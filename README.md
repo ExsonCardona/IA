@@ -1,0 +1,2 @@
+# IA
+Proyecto Inteligencia artificial 
