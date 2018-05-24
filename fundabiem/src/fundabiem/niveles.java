@@ -9,10 +9,10 @@ package fundabiem;
  *
  * @author exson
  */
-public class niveles extends javax.swing.JFrame {
+public class niveles extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form niveles
+     * Creates new form Menu2
      */
     public niveles() {
         initComponents();
@@ -27,45 +27,39 @@ public class niveles extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        carnee = new javax.swing.JTextField();
+        nombre = new javax.swing.JTextField();
+        txtbus = new javax.swing.JTextField();
+        nit = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        pacientes = new javax.swing.JTable();
+        direccion = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        tele = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        txtsubtotal = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
-        txtbus = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbclientes = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Niveles");
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-4-icon_34779.png"))); // NOI18N
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-0-icon_34783.png"))); // NOI18N
-        jButton2.setText("jButton1");
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-2-icon_34781.png"))); // NOI18N
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-1-icon_34782.png"))); // NOI18N
-
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-3-icon_34780.png"))); // NOI18N
-
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-5-icon_34778.png"))); // NOI18N
-        jButton6.setText("jButton1");
-
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-6-icon_34777.png"))); // NOI18N
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Terapias");
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-7-icon_34776.png"))); // NOI18N
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-8-icon_34775.png"))); // NOI18N
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-9-icon_34774.png"))); // NOI18N
+        carnee.setText("jTextField1");
+
+        nombre.setText("jTextField1");
 
         txtbus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,7 +75,9 @@ public class niveles extends javax.swing.JFrame {
             }
         });
 
-        tbclientes.setModel(new javax.swing.table.DefaultTableModel(
+        nit.setText("jTextField1");
+
+        pacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -92,14 +88,40 @@ public class niveles extends javax.swing.JFrame {
 
             }
         ));
-        tbclientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        pacientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbclientesMouseClicked(evt);
+                pacientesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tbclientes);
+        jScrollPane1.setViewportView(pacientes);
 
-        jLabel1.setText("Buscar Estudiante:");
+        direccion.setText("jTextField1");
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-0-icon_34783.png"))); // NOI18N
+        jButton2.setText("jButton1");
+
+        tele.setText("jTextField1");
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-2-icon_34781.png"))); // NOI18N
+
+        jLabel1.setText("Buscar Paciente:");
+
+        jTextField6.setText("jTextField1");
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-1-icon_34782.png"))); // NOI18N
+
+        txtsubtotal.setText("jTextField1");
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-3-icon_34780.png"))); // NOI18N
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-5-icon_34778.png"))); // NOI18N
+        jButton6.setText("jButton1");
+
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-6-icon_34777.png"))); // NOI18N
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-4-icon_34779.png"))); // NOI18N
+
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-9-icon_34774.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,8 +158,23 @@ public class niveles extends javax.swing.JFrame {
                             .addGap(9, 9, 9)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
-                                .addComponent(txtbus, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 36, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(txtbus, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(109, 109, 109)
+                                    .addComponent(carnee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(nit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(tele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(11, 11, 11)
+                                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(12, 12, 12)
+                                    .addComponent(txtsubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +182,15 @@ public class niveles extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtbus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtbus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carnee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtsubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -172,58 +217,25 @@ public class niveles extends javax.swing.JFrame {
 
     private void txtbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbusActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_txtbusActionPerformed
 
     private void txtbusKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbusKeyReleased
         // TODO add your handling code here:
-
     }//GEN-LAST:event_txtbusKeyReleased
 
     private void txtbusKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbusKeyTyped
         // TODO add your handling code here:
-      
+
     }//GEN-LAST:event_txtbusKeyTyped
 
-    private void tbclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbclientesMouseClicked
-    }//GEN-LAST:event_tbclientesMouseClicked
+    private void pacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pacientesMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(niveles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(niveles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(niveles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(niveles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    }//GEN-LAST:event_pacientesMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new niveles().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JTextField carnee;
+    public static javax.swing.JTextField direccion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
@@ -236,7 +248,12 @@ public class niveles extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbclientes;
+    private javax.swing.JTextField jTextField6;
+    public static javax.swing.JTextField nit;
+    public static javax.swing.JTextField nombre;
+    public static javax.swing.JTable pacientes;
+    public static javax.swing.JTextField tele;
     private javax.swing.JTextField txtbus;
+    public static javax.swing.JTextField txtsubtotal;
     // End of variables declaration//GEN-END:variables
 }
