@@ -1,6 +1,7 @@
 package fundabiem;
 
 import conexion.conectar;
+import static fundabiem.Menu.jDesktopPane1;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -100,7 +101,7 @@ String[]titulos={"Fecha Sesion","Fecha Cita","Sesiones","Avances","Diagnostico",
         });
 
         Btnregistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevoo (2).png"))); // NOI18N
-        Btnregistrar.setText("Registar Estudiantes");
+        Btnregistrar.setText("Registar Paciente");
         Btnregistrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevoo (1).png"))); // NOI18N
         Btnregistrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Btnregistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -206,6 +207,10 @@ private void txtbusKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t
 
 private void BtnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnregistrarActionPerformed
 // TODO add your handling code here:
+ newregistro fac= new  newregistro();
+ jDesktopPane1.add(fac);
+ fac.show();
+
 }//GEN-LAST:event_BtnregistrarActionPerformed
 
 private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnenviarActionPerformed

@@ -131,7 +131,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/Nuevoo (2).png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Registar Estudiantes"/>
+            <Property name="text" type="java.lang.String" value="Registar Paciente"/>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/Nuevoo (1).png"/>
             </Property>

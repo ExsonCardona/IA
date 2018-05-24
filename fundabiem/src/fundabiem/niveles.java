@@ -49,6 +49,8 @@ public class niveles extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("Terapias");
