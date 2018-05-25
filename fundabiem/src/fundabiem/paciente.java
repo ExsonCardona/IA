@@ -265,12 +265,17 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 fecha =  (String)tbclientes.getValueAt(fila, 3);
                 nivel =   (String)tbclientes.getValueAt(fila, 4);
                 di =   (String)tbclientes.getValueAt(fila, 5);
-
+                 niveles.txt1.setDisabledTextColor(Color.blue);
                 niveles.txt1.setText(nom);
+                niveles.txt3.setDisabledTextColor(Color.blue);
                 niveles.txt3.setText(ape);
+                niveles.txt4.setDisabledTextColor(Color.blue);
                 niveles.txt4.setText(diag);
+                niveles.txt5.setDisabledTextColor(Color.blue);
                 niveles.txt5.setText(fecha);
+                niveles.txt6.setDisabledTextColor(Color.blue);
                 niveles.txt6.setText(nivel);
+                niveles.txt7.setDisabledTextColor(Color.blue);
                 niveles.txt7.setText(di);
 
                 this.dispose();

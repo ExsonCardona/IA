@@ -121,6 +121,7 @@ public class terapia extends javax.swing.JInternalFrame {
         niveles fac= new niveles();
         jDesktopPane1.add(fac);
         fac.show();
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

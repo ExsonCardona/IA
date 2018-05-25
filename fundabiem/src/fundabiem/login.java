@@ -119,8 +119,7 @@ public class login extends javax.swing.JFrame {
         Menu verformulario2=new Menu();
         verformulario2.setVisible(true);
         
-        login escnder = new login();
-        escnder.setVisible(false);
+        this.dispose();
         
     }//GEN-LAST:event_bloginActionPerformed
 
