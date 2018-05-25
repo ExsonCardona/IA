@@ -82,7 +82,7 @@ String[]titulos={"Fecha Sesion","Fecha Cita","Sesiones","Avances","Diagnostico",
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Registro de Estudiantes");
+        setTitle("Buscar Paciente");
 
         jLabel1.setText("Buscar Cliente:");
 
@@ -110,7 +110,7 @@ String[]titulos={"Fecha Sesion","Fecha Cita","Sesiones","Avances","Diagnostico",
             }
         });
 
-        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carné", "Nombre", "NIT" }));
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nombre", "Apellido", "Terapia" }));
         comboFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboFiltroActionPerformed(evt);
@@ -268,14 +268,14 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_tbclientesMouseClicked
     public void filtro() {
         int columnaABuscar = 0;
-        if (comboFiltro.getSelectedItem() == "Carne") {
-            columnaABuscar = 0;
+        if (comboFiltro.getSelectedItem() == "Nombre") {
+            columnaABuscar = 6;
         }
-        if (comboFiltro.getSelectedItem().toString() == "Nombre") {
-            columnaABuscar = 1;
+        if (comboFiltro.getSelectedItem().toString() == "Apellido") {
+            columnaABuscar = 7;
         }
-        if (comboFiltro.getSelectedItem() == "NIT") {
-            columnaABuscar = 2;
+        if (comboFiltro.getSelectedItem() == "Terapia") {
+            columnaABuscar = 5;
         }
         trsFiltro.setRowFilter(RowFilter.regexFilter(txtbus.getText(), columnaABuscar));
     }
