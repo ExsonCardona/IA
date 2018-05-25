@@ -5,19 +5,58 @@
  */
 package fundabiem;
 
+import static fundabiem.Menu.jDesktopPane1;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author exson
  */
-public class niveles extends javax.swing.JInternalFrame {
-
+public class niveles extends javax.swing.JInternalFrame implements Runnable {
+  private int seg = 0;
+    private int min = 0;
+    private int hora = 0;
+    private boolean continuar = true;
+    private Incrementar i;
     /**
      * Creates new form Menu2
      */
     public niveles() {
         initComponents();
+       
+        this.setTitle("Cronómetro");
+        txf_cont1.setText(String.valueOf(hora));
+        txf_cont2.setText(String.valueOf(min));
+        txf_cont3.setText(String.valueOf(seg));
+        btn_comenzar.setEnabled(true);
+        btn_parar.setEnabled(false);
+        btn_reanudar.setEnabled(false);
     }
-
+ public static void ejecutar(){
+     Runtime app = Runtime.getRuntime();
+     try{
+         app.exec("C:/Juegos/Hormiga.exe");
+     }catch (Exception e){
+         
+     }
+         
+ }
+ 
+ void reloj (){
+       btn_comenzar.setEnabled(false);
+        btn_parar.setEnabled(true);
+        btn_reanudar.setEnabled(false);
+        resetSeg();
+        resetMin();
+        resetHora();
+        seguir();
+        i=null;
+        i = new Incrementar(this);
+        i.start();
+ }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,25 +68,30 @@ public class niveles extends javax.swing.JInternalFrame {
 
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        carnee = new javax.swing.JTextField();
-        nombre = new javax.swing.JTextField();
-        txtbus = new javax.swing.JTextField();
-        nit = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        pacientes = new javax.swing.JTable();
-        direccion = new javax.swing.JTextField();
+        txt6 = new javax.swing.JTextField();
+        txt5 = new javax.swing.JTextField();
+        txt3 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        tele = new javax.swing.JTextField();
+        txt4 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        txtsubtotal = new javax.swing.JTextField();
+        txt1 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        txt7 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txf_cont3 = new javax.swing.JTextField();
+        txf_cont2 = new javax.swing.JTextField();
+        txf_cont1 = new javax.swing.JTextField();
+        btn_comenzar = new javax.swing.JButton();
+        btn_parar = new javax.swing.JButton();
+        btn_reanudar = new javax.swing.JButton();
+        btnclientes = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -59,46 +103,29 @@ public class niveles extends javax.swing.JInternalFrame {
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-8-icon_34775.png"))); // NOI18N
 
-        txtbus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtbusActionPerformed(evt);
-            }
-        });
-        txtbus.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtbusKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtbusKeyTyped(evt);
-            }
-        });
+        txt6.setEnabled(false);
 
-        pacientes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
+        txt5.setEnabled(false);
 
-            }
-        ));
-        pacientes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pacientesMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(pacientes);
+        txt3.setEnabled(false);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-0-icon_34783.png"))); // NOI18N
         jButton2.setText("jButton1");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        txt4.setEnabled(false);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-2-icon_34781.png"))); // NOI18N
 
         jLabel1.setText("Buscar Paciente:");
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-1-icon_34782.png"))); // NOI18N
+
+        txt1.setEnabled(false);
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-3-icon_34780.png"))); // NOI18N
 
@@ -111,24 +138,91 @@ public class niveles extends javax.swing.JInternalFrame {
 
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-9-icon_34774.png"))); // NOI18N
 
+        txt7.setEnabled(false);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel2.setText(":");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel3.setText(":");
+
+        txf_cont3.setEditable(false);
+        txf_cont3.setBackground(new java.awt.Color(204, 255, 255));
+        txf_cont3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        txf_cont3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txf_cont3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txf_cont3ActionPerformed(evt);
+            }
+        });
+
+        txf_cont2.setEditable(false);
+        txf_cont2.setBackground(new java.awt.Color(204, 255, 255));
+        txf_cont2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        txf_cont2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txf_cont2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txf_cont2ActionPerformed(evt);
+            }
+        });
+
+        txf_cont1.setEditable(false);
+        txf_cont1.setBackground(new java.awt.Color(204, 255, 255));
+        txf_cont1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        txf_cont1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txf_cont1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txf_cont1ActionPerformed(evt);
+            }
+        });
+
+        btn_comenzar.setText("START");
+        btn_comenzar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_comenzarActionPerformed(evt);
+            }
+        });
+
+        btn_parar.setText("STOP");
+        btn_parar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_pararActionPerformed(evt);
+            }
+        });
+
+        btn_reanudar.setText("RESTART");
+        btn_reanudar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_reanudarActionPerformed(evt);
+            }
+        });
+
+        btnclientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar.png"))); // NOI18N
+        btnclientes.setText("Buscar Paciente");
+        btnclientes.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar2.png"))); // NOI18N
+        btnclientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnclientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnclientesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -142,53 +236,89 @@ public class niveles extends javax.swing.JInternalFrame {
                                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 10, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addComponent(btnclientes, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(txf_cont1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel2)
+                        .addGap(4, 4, 4)
+                        .addComponent(txf_cont2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel3)
+                        .addGap(4, 4, 4)
+                        .addComponent(txf_cont3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(txtbus, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(248, 248, 248)
-                                    .addComponent(txtsubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tele, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(nit, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(carnee, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_comenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txt1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)
+                                .addComponent(txt5, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_parar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_reanudar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtbus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(carnee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtsubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nit, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(btn_reanudar)
+                            .addComponent(btn_comenzar))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txt3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_parar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 1, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txf_cont1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txf_cont2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txf_cont3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)))
+                            .addComponent(btnclientes, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,27 +333,66 @@ public class niveles extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbusActionPerformed
+    private void txf_cont3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_cont3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtbusActionPerformed
+    }//GEN-LAST:event_txf_cont3ActionPerformed
 
-    private void txtbusKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbusKeyReleased
+    private void txf_cont2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_cont2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtbusKeyReleased
+    }//GEN-LAST:event_txf_cont2ActionPerformed
 
-    private void txtbusKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbusKeyTyped
+    private void txf_cont1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_cont1ActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_txf_cont1ActionPerformed
 
-    }//GEN-LAST:event_txtbusKeyTyped
+    private void btn_comenzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_comenzarActionPerformed
 
-    private void pacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pacientesMouseClicked
+        btn_comenzar.setEnabled(false);
+        btn_parar.setEnabled(true);
+        btn_reanudar.setEnabled(false);
+        resetSeg();
+        resetMin();
+        resetHora();
+        seguir();
+        i=null;
+        i = new Incrementar(this);
+        i.start();
 
-    }//GEN-LAST:event_pacientesMouseClicked
+    }//GEN-LAST:event_btn_comenzarActionPerformed
+
+    private void btn_pararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pararActionPerformed
+        btn_comenzar.setEnabled(true);
+        btn_parar.setEnabled(false);
+        btn_reanudar.setEnabled(true);
+        parar();
+    }//GEN-LAST:event_btn_pararActionPerformed
+
+    private void btn_reanudarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reanudarActionPerformed
+        btn_comenzar.setEnabled(false);
+        btn_parar.setEnabled(true);
+        btn_reanudar.setEnabled(false);
+        seguir();
+        i.seguir();
+    }//GEN-LAST:event_btn_reanudarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    ejecutar();
+    reloj();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnclientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclientesActionPerformed
+        // TODO add your handling code here:
+        paciente fac= new paciente();
+        jDesktopPane1.add(fac);
+        fac.show();
+    }//GEN-LAST:event_btnclientesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JTextField carnee;
-    public static javax.swing.JTextField direccion;
+    private javax.swing.JButton btn_comenzar;
+    private javax.swing.JButton btn_parar;
+    private javax.swing.JButton btn_reanudar;
+    private javax.swing.JButton btnclientes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
@@ -235,13 +404,66 @@ public class niveles extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField6;
-    public static javax.swing.JTextField nit;
-    public static javax.swing.JTextField nombre;
-    public static javax.swing.JTable pacientes;
-    public static javax.swing.JTextField tele;
-    private javax.swing.JTextField txtbus;
-    public static javax.swing.JTextField txtsubtotal;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField txf_cont1;
+    private javax.swing.JTextField txf_cont2;
+    private javax.swing.JTextField txf_cont3;
+    public static javax.swing.JTextField txt1;
+    public static javax.swing.JTextField txt3;
+    public static javax.swing.JTextField txt4;
+    public static javax.swing.JTextField txt5;
+    public static javax.swing.JTextField txt6;
+    public static javax.swing.JTextField txt7;
     // End of variables declaration//GEN-END:variables
-}
+     @Override
+    public void run() {
+        
+    }
+    public synchronized int aumentSeg(){
+        seg++;
+        txf_cont3.setText(String.valueOf(seg));
+        return seg;
+    }
+    public synchronized int aumentMin(){
+        min++;
+        txf_cont2.setText(String.valueOf(min));
+        return min;
+    }
+    public synchronized int aumentHora(){
+        hora++;
+        txf_cont1.setText(String.valueOf(hora));
+        return hora;
+    }
+    public void resetSeg(){
+        txf_cont3.setText(String.valueOf("0"));
+        seg=0;
+    }
+    public void resetMin(){
+        txf_cont2.setText(String.valueOf("0")); 
+        min=0;
+    }
+    public void resetHora(){
+        txf_cont1.setText(String.valueOf("0"));       
+        hora=0;
+    }
+    public synchronized int getMin(){
+        return min;
+    }
+    public synchronized int getSeg(){
+        return seg;
+    }    
+    public synchronized int getHora(){
+        return hora;
+    }   
+    public synchronized void seguir(){
+        continuar =true;
+    }
+    public synchronized void parar(){
+        continuar =false;
+    }
+    public synchronized boolean isContinuar() {
+        return continuar;
+    }   
+
+ }

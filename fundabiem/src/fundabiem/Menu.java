@@ -118,7 +118,7 @@ public class Menu extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         // TODO add your handling code here:
-           niveles fac= new niveles();
+        newregistro fac= new newregistro();
         jDesktopPane1.add(fac);
         fac.show();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -127,7 +127,7 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         
               
-        paciente fac= new paciente();
+        terapia fac= new terapia();
         jDesktopPane1.add(fac);
         fac.show();
         

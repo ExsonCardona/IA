@@ -23,8 +23,8 @@ DefaultTableModel modelo;
     }
     void mostrarclientes(String valor)
     {
-String[]titulos={"Fecha Sesion","Fecha Cita","Sesiones","Avances","Diagnostico","Terapia","Nombre","Apellido"} ;  
-        String []registros= new String[8];
+String[]titulos={"Nombre","Apellido","Terapia","Fecha Sesion","Nivel","Codigo"} ;  
+        String []registros= new String[6];
         modelo=new DefaultTableModel(null,titulos);
         String Sql= "CALL consulta();";
      
@@ -32,17 +32,16 @@ String[]titulos={"Fecha Sesion","Fecha Cita","Sesiones","Avances","Diagnostico",
         try {
              Statement st = cn.createStatement();
              ResultSet rs = st.executeQuery(Sql);
-             while(rs.next())
+             while(rs.next())                              
              { 
-                registros[0]=rs.getString("t.fecha_sesion"); 
-                registros[1]=rs.getString("t.fechas_citas");
-                registros[2]=rs.getString("t.sesiones");  
-                registros[3]=rs.getString("t.avances_horas");
-                registros[4]=rs.getString("p.diagnostico");
-                registros[5]=rs.getString("p.tipo_terapia");
-                registros[6]=rs.getString("e.pnombre");
-                registros[7]=rs.getString("e.papellido");
+                registros[0]=rs.getString("a.pnombre");
+                registros[1]=rs.getString("a.papellido");
+                registros[2]=rs.getString("p.diagnostico_final");  
+                registros[3]=rs.getString("t.fecha_proxsesion");
+                registros[4]=rs.getString("t.nivel");
+                registros[5]=rs.getString("a.id");
                 
+                               
                  modelo.addRow(registros);
              } 
             tbclientes.setModel(modelo);
@@ -84,7 +83,7 @@ String[]titulos={"Fecha Sesion","Fecha Cita","Sesiones","Avances","Diagnostico",
         setResizable(true);
         setTitle("Buscar Paciente");
 
-        jLabel1.setText("Buscar Cliente:");
+        jLabel1.setText("Buscar Paciente:");
 
         txtbus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,7 +127,6 @@ String[]titulos={"Fecha Sesion","Fecha Cita","Sesiones","Avances","Diagnostico",
 
             }
         ));
-        tbclientes.setComponentPopupMenu(jPopupMenu1);
         tbclientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbclientesMouseClicked(evt);
@@ -140,12 +138,9 @@ String[]titulos={"Fecha Sesion","Fecha Cita","Sesiones","Avances","Diagnostico",
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(13, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 826, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -154,9 +149,11 @@ String[]titulos={"Fecha Sesion","Fecha Cita","Sesiones","Avances","Diagnostico",
                                 .addGap(41, 41, 41)
                                 .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Btnregistrar)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(Btnregistrar))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 826, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,13 +162,12 @@ String[]titulos={"Fecha Sesion","Fecha Cita","Sesiones","Avances","Diagnostico",
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtbus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtbus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Btnregistrar))
+                .addGap(3, 3, 3)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -218,64 +214,16 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     
     
 }//GEN-LAST:event_mnenviarActionPerformed
-
-    private void tbclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbclientesMouseClicked
-    String cod="",nom="",nt="",tel="",dir="",sub;
-    int fila = tbclientes.getSelectedRow();
-    DefaultTableModel tabladet = (DefaultTableModel) niveles.pacientes.getModel();
-         String[]  dato=new String[4];
-    try {
-        if(fila==-1)
-        {
-            JOptionPane.showMessageDialog(null, "No ha seleccionado ningun dato");
-                  
-        }
-        else
-        {
-         cod =  (String)tbclientes.getValueAt(fila, 0);
-         nom =  (String)tbclientes.getValueAt(fila, 1);
-         tel =  (String)tbclientes.getValueAt(fila, 3);
-         dir=   (String)tbclientes.getValueAt(fila, 7);
-         nt =   (String)tbclientes.getValueAt(fila, 2);
-         sub=(String)tbclientes.getValueAt(fila, 5);
-         String codins=tbclientes.getValueAt(fila, 4).toString();
-         String desins=tbclientes.getValueAt(fila, 5).toString();
-         String preins=tbclientes.getValueAt(fila, 6).toString();
-         
-         
-         niveles.carnee.setDisabledTextColor(Color.blue);
-         niveles.carnee.setText(cod);
-         niveles.nombre.setDisabledTextColor(Color.blue);
-         niveles.nombre.setText(nom);
-         niveles.nit.setDisabledTextColor(Color.blue);
-         niveles.nit.setText(nt);
-         niveles.tele.setDisabledTextColor(Color.blue);
-         niveles.tele.setText(tel);
-         niveles.direccion.setDisabledTextColor(Color.blue);
-         niveles.direccion.setText(dir);
-         niveles.txtsubtotal.setText(sub);
-       
-           
-            
-            tabladet.addRow(dato);
-        
-            niveles.pacientes.setModel(tabladet);
-         this.dispose();
-         
-        }
-    } catch (Exception e) {
-    }
-    }//GEN-LAST:event_tbclientesMouseClicked
     public void filtro() {
         int columnaABuscar = 0;
         if (comboFiltro.getSelectedItem() == "Nombre") {
-            columnaABuscar = 6;
+            columnaABuscar = 0;
         }
         if (comboFiltro.getSelectedItem().toString() == "Apellido") {
-            columnaABuscar = 7;
+            columnaABuscar = 1;
         }
         if (comboFiltro.getSelectedItem() == "Terapia") {
-            columnaABuscar = 5;
+            columnaABuscar = 2;
         }
         trsFiltro.setRowFilter(RowFilter.regexFilter(txtbus.getText(), columnaABuscar));
     }
@@ -299,6 +247,39 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         tbclientes.setRowSorter(trsFiltro);
     }//GEN-LAST:event_txtbusKeyTyped
 
+    private void tbclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbclientesMouseClicked
+        String nom="",ape="",diag="",fecha="",nivel="",di="";
+        int fila = tbclientes.getSelectedRow();
+
+        try {
+            if(fila==-1)
+            {
+                JOptionPane.showMessageDialog(null, "No ha seleccionado ningun dato");
+
+            }
+            else
+            {
+                nom =  (String)tbclientes.getValueAt(fila, 0);
+                ape =  (String)tbclientes.getValueAt(fila, 1);
+                diag=   (String)tbclientes.getValueAt(fila, 2);
+                fecha =  (String)tbclientes.getValueAt(fila, 3);
+                nivel =   (String)tbclientes.getValueAt(fila, 4);
+                di =   (String)tbclientes.getValueAt(fila, 5);
+
+                niveles.txt1.setText(nom);
+                niveles.txt3.setText(ape);
+                niveles.txt4.setText(diag);
+                niveles.txt5.setText(fecha);
+                niveles.txt6.setText(nivel);
+                niveles.txt7.setText(di);
+
+                this.dispose();
+
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_tbclientesMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btnregistrar;
     private javax.swing.JComboBox comboFiltro;
@@ -307,7 +288,7 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem mnenviar;
-    public static javax.swing.JTable tbclientes;
+    private javax.swing.JTable tbclientes;
     private javax.swing.JTextField txtbus;
     // End of variables declaration//GEN-END:variables
 conectar cc= new conectar();
