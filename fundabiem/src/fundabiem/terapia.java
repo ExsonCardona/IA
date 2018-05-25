@@ -5,6 +5,8 @@
  */
 package fundabiem;
 
+import static fundabiem.Menu.jDesktopPane1;
+
 /**
  *
  * @author exson
@@ -116,8 +118,9 @@ public class terapia extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        niveles verformulario2=new niveles();
-        verformulario2.setVisible(true);
+        niveles fac= new niveles();
+        jDesktopPane1.add(fac);
+        fac.show();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
