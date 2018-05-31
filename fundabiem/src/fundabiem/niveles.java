@@ -5,9 +5,11 @@
  */
 package fundabiem;
 
+import Cronometro.Incrementar;
 import static fundabiem.Menu.jDesktopPane1;
 import java.awt.Color;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -39,13 +41,26 @@ public class niveles extends javax.swing.JInternalFrame implements Runnable {
  public static void ejecutar(){
      Runtime app = Runtime.getRuntime();
      try{
-         app.exec("C:/Juegos/Hormiga.exe");
+         app.exec("http://localhost/scratch/1.html");
      }catch (Exception e){
          
      }
          
  }
- 
+  public void goToURL(String URL){
+           if (java.awt.Desktop.isDesktopSupported()) {
+            java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+
+            if (desktop.isSupported(java.awt.Desktop.Action.BROWSE)) {
+                try {
+                    java.net.URI uri = new java.net.URI(URL);
+                    desktop.browse(uri);
+                } catch (URISyntaxException | IOException ex) {
+                    Logger.getLogger(niveles.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
  void jalar(){
      avances fac= new avances();
         jDesktopPane1.add(fac);
@@ -55,7 +70,7 @@ public class niveles extends javax.swing.JInternalFrame implements Runnable {
  void reloj (){
        uno.setEnabled(false);
         btn_parar.setEnabled(true);
-       // btn_reanudar.setEnabled(false);
+        btn_reanudar.setEnabled(true);
         resetSeg();
         resetMin();
         resetHora();
@@ -80,13 +95,13 @@ public class niveles extends javax.swing.JInternalFrame implements Runnable {
                 
                 
                 avances.cod.setDisabledTextColor(Color.blue);
-                avances.cod.setText(nom);
+                avances.cod.setText(cod);
                 avances.tipo.setDisabledTextColor(Color.blue);
-                avances.tipo.setText(ape);
+                avances.tipo.setText(tip);
                 avances.nom.setDisabledTextColor(Color.blue);
-                avances.nom.setText(tip);
+                avances.nom.setText(nom);
                 avances.ape.setDisabledTextColor(Color.blue);
-                avances.ape.setText(cod);
+                avances.ape.setText(ape);
                 avances.h.setDisabledTextColor(Color.blue);
                 avances.h.setText(horas);
                 avances.min.setDisabledTextColor(Color.blue);
@@ -138,18 +153,24 @@ public class niveles extends javax.swing.JInternalFrame implements Runnable {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         btnclientes1 = new javax.swing.JButton();
+        btn_reanudar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Terapias");
+        setTitle("Terapia de Lenguaje");
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-7-icon_34776.png"))); // NOI18N
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-8-icon_34775.png"))); // NOI18N
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-2-icon_34781.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         uno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-1-icon_34782.png"))); // NOI18N
         uno.addActionListener(new java.awt.event.ActionListener() {
@@ -272,6 +293,13 @@ public class niveles extends javax.swing.JInternalFrame implements Runnable {
             }
         });
 
+        btn_reanudar.setText("STOP");
+        btn_reanudar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_reanudarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -317,9 +345,12 @@ public class niveles extends javax.swing.JInternalFrame implements Runnable {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelLayout.createSequentialGroup()
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_parar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addComponent(btn_parar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_reanudar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel3))
-                        .addGap(0, 267, Short.MAX_VALUE))))
+                        .addGap(0, 155, Short.MAX_VALUE))))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,7 +368,9 @@ public class niveles extends javax.swing.JInternalFrame implements Runnable {
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))))
                 .addGap(11, 11, 11)
-                .addComponent(btn_parar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_parar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_reanudar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -466,9 +499,20 @@ public class niveles extends javax.swing.JInternalFrame implements Runnable {
         
     }//GEN-LAST:event_unoActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        goToURL("http://localhost/scratch/1.html");
+        reloj();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btn_reanudarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reanudarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_reanudarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_parar;
+    private javax.swing.JButton btn_reanudar;
     private javax.swing.JButton btnclientes;
     private javax.swing.JButton btnclientes1;
     private javax.swing.JButton jButton1;

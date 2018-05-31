@@ -126,10 +126,18 @@ public class terapia extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+         especial fac= new especial();
+        jDesktopPane1.add(fac);
+        fac.show();
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        tocupacional fac= new tocupacional();
+        jDesktopPane1.add(fac);
+        fac.show();
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
