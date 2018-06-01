@@ -5,7 +5,6 @@
  */
 package fundabiem;
 
-import static fundabiem.Menu.jButtonEstadisticas;
 import static fundabiem.Menu.jDesktopPane1;
 
 /**
@@ -207,7 +206,7 @@ public class Menu_estadisticas extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(16, Short.MAX_VALUE))))
         );
 
         pack();
