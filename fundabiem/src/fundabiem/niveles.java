@@ -41,7 +41,25 @@ public class niveles extends javax.swing.JInternalFrame implements Runnable {
  public static void ejecutar(){
      Runtime app = Runtime.getRuntime();
      try{
-         app.exec("http://localhost/scratch/1.html");
+         app.exec("C:/Juegos/unos.exe");
+     }catch (Exception e){
+         
+     }
+         
+ }
+  public static void ejecutar2(){
+     Runtime app = Runtime.getRuntime();
+     try{
+         app.exec("C:/Juegos/doss.exe");
+     }catch (Exception e){
+         
+     }
+         
+ }
+    public static void ejecutar3(){
+     Runtime app = Runtime.getRuntime();
+     try{
+         app.exec("C:/Juegos/tress.exe");
      }catch (Exception e){
          
      }
@@ -180,6 +198,11 @@ public class niveles extends javax.swing.JInternalFrame implements Runnable {
         });
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-3-icon_34780.png"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Number-5-icon_34778.png"))); // NOI18N
 
@@ -501,13 +524,19 @@ public class niveles extends javax.swing.JInternalFrame implements Runnable {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        goToURL("http://localhost/scratch/1.html");
         reloj();
+        ejecutar2();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btn_reanudarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reanudarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_reanudarActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        reloj();
+        ejecutar3();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

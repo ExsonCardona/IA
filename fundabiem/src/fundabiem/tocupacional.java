@@ -48,7 +48,7 @@ public class tocupacional extends javax.swing.JInternalFrame implements Runnable
  public static void ejecutar(){
      Runtime app = Runtime.getRuntime();
      try{
-         app.exec("C:/Juegos/terapia.exe");
+         app.exec("C:/Juegos/uno.exe");
      }catch (Exception e){
          
      }
@@ -57,7 +57,7 @@ public class tocupacional extends javax.swing.JInternalFrame implements Runnable
   public static void ejecutar1(){
      Runtime app = Runtime.getRuntime();
      try{
-         app.exec("C:/Juegos/terapia.exe");
+         app.exec("C:/Juegos/dos.exe");
      }catch (Exception e){
          
      }
@@ -66,7 +66,7 @@ public class tocupacional extends javax.swing.JInternalFrame implements Runnable
    public static void ejecutar2(){
      Runtime app = Runtime.getRuntime();
      try{
-         app.exec("C:/Juegos/terapia.exe");
+         app.exec("C:/Juegos/tres.exe");
      }catch (Exception e){
          
      }
